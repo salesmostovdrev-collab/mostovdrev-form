@@ -1,0 +1,412 @@
+/* Общие настройки */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.form-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+    line-height: 1.4;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+fieldset {
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    padding: 0 8px;
+}
+
+.fio-grid, .car-grid, .doc-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trips-reset-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #4e5d6c;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    cursor: pointer;
+    padding-right: 40px;
+}
+
+.calendar-trigger {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #ccced1;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+    background-color: #fff;
+}
+
+input:focus {
+    border-color: #28a745;
+}
+
+#carNumber, #trailerNumber {
+    text-transform: uppercase;
+    font-family: monospace;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.required::after {
+    content: " *";
+    color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 4px;
+    display: none;
+}
+
+input.invalid,
+.form-group input.invalid,
+fieldset input.invalid {
+    border: 2px solid #dc3545 !important;
+    background-color: #fff8f8 !important;
+    outline: none !important;
+}
+
+.stepper-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    max-width: 180px;
+    border: 1.5px solid #ccced1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stepper-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+    width: 50px;
+    height: 45px;
+    background: #f8f9fa;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s;
+}
+
+.stepper-btn:active {
+    background: #e2e6ea;
+}
+
+#tripsCount {
+    flex: 1;
+    text-align: center;
+    border: none;
+    height: 45px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0;
+    background: transparent;
+}
+
+.reset-btn {
+    width: 100%;
+    height: 45px;
+    background-color: #f8f9fa;
+    border: 1.5px solid #ccced1;
+    color: #6c757d;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.reset-btn:hover {
+    background-color: #fde8e8;
+    border-color: #f5c6cb;
+    color: #bd2130;
+}
+
+.reset-btn:active {
+    transform: scale(0.99);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+    transition: background-color 0.1s, transform 0.1s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.submit-btn:active:not(:disabled) {
+    background-color: #1e7e34; 
+    transform: scale(0.99); 
+}
+
+.submit-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.custom-calendar-popup {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eaf2ec;
+    padding: 16px;
+    width: 280px;
+    display: none;
+    z-index: 1000;
+    font-size: 0.9rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.calendar-header button {
+    background: #f1f7f3;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #447a53;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.calendar-header button:hover {
+    background: #e3efe6;
+}
+
+#calMonthYearTitle {
+    font-weight: 600;
+    color: #2e4a36;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 500;
+    color: #8fa495;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+}
+
+.calendar-days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-day {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease;
+    color: #3b4c40;
+}
+
+.calendar-day:hover:not(.disabled) {
+    background-color: #eaf5ee;
+}
+
+.calendar-day.selected {
+    background-color: #d1ebd9 !important;
+    color: #1e4527;
+    font-weight: 600;
+}
+
+.calendar-day.today-marker {
+    border: 1.5px solid #a3d9b3;
+}
+
+.calendar-day.disabled {
+    color: #d2ded5;
+    cursor: not-allowed;
+    background-color: #fafdfb;
+}
+
+/* Стили модального окна */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    animation: scaleUp 0.25s ease-out;
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #eaf5ee;
+    color: #28a745;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+}
+
+.modal-content h3 {
+    color: #1e4527;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+.modal-content p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.modal-btn:hover {
+    background-color: #218838;
+}
+
+.modal-btn:active {
+    transform: scale(0.98);
+}
+
+@media (min-width: 576px) {
+    body { padding: 30px; }
+    .fio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .car-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .doc-grid { display: grid; grid-template-columns: 0.3fr 0.7fr; gap: 12px; }
+    .trips-reset-block { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .reset-col { justify-content: flex-end; }
+}
