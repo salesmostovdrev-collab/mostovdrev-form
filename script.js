@@ -48,9 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (current < 9) tripsInput.value = current + 1;
   });
 
-  // Маски автомобильных номеров (Формат Республики Беларусь)
+  // Маски автомобильных номеров (Формат Республики Беларусь + разрешен прочерк)
   const applyCarMask = (input, isTrailer = false) => {
-    let val = input.value.toUpperCase().replace(/[^A-ZА-Я0-9]/g, '');
+    let val = input.value.toUpperCase();
+
+    // UX Улучшение: если для прицепа ввели дефис или прочерк, оставляем только его
+    if (isTrailer && (val === '-' || val === '—' || val === '_')) {
+      input.value = '-';
+      return;
+    }
+
+    // Для всех остальных случаев очищаем всё, кроме букв и цифр
+    val = val.replace(/[^A-ZА-Я0-9]/g, '');
     if (!isTrailer) {
       // Тягач: 1234 AB-7
       if (val.length > 4 && val.length <= 6) val = val.slice(0, 4) + ' ' + val.slice(4);
